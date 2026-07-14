@@ -1,16 +1,52 @@
-export function WordInputForm() {
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { FaHeart } from 'react-icons/fa'
+
+type WordInputFormProps = {
+  onSubmitWord: (word: string) => Promise<void>
+  disabled: boolean
+  isValidating: boolean
+  hasError: boolean
+}
+
+export function WordInputForm({ onSubmitWord, disabled, isValidating, hasError }: WordInputFormProps) {
+  const [value, setValue] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (!isValidating) {
+      inputRef.current?.focus()
+    }
+  }, [isValidating])
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!value.trim()) return
+
+    await onSubmitWord(value)
+    setValue('')
+  }
+
   return (
-    <form className="flex flex-col gap-3 sm:flex-row">
+    <form className="flex flex-col gap-3 sm:flex-row" onSubmit={handleSubmit}>
       <input
+        ref={inputRef}
         type="text"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
         placeholder="Escribí una palabra..."
-        className="flex-1 rounded-full border border-ink/10 bg-white px-5 py-3 text-ink placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-brand-pink"
+        disabled={disabled}
+        autoFocus
+        className={`flex-1 rounded-2xl border bg-white px-5 py-3 text-ink placeholder:text-ink/40 focus:outline-none focus:ring-1 disabled:opacity-60 ${
+          hasError ? 'border-error-text focus:ring-error-text' : 'border-ink/20 focus:ring-brand-pink'
+        }`}
       />
       <button
         type="submit"
-        className="rounded-full bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark"
+        disabled={disabled || isValidating}
+        className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark disabled:opacity-60"
       >
         Enviar
+        <FaHeart aria-hidden="true" />
       </button>
     </form>
   )

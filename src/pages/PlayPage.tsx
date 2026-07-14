@@ -1,4 +1,3 @@
-import { FiLink } from 'react-icons/fi'
 import backgroundImage from '../assets/background.png'
 import { GameHeader } from '../components/game/GameHeader'
 import { StatsBar } from '../components/game/StatsBar'
@@ -7,13 +6,15 @@ import { EmptyChainState } from '../components/game/EmptyChainState'
 import { NextLetterHint } from '../components/game/NextLetterHint'
 import { WordInputForm } from '../components/game/WordInputForm'
 import { ErrorMessage } from '../components/game/ErrorMessage'
+import { GameOverPanel } from '../components/game/GameOverPanel'
 import { Panel } from '../components/common/Panel'
-
-// Datos de ejemplo mientras se diseña la pantalla. TODO: reemplazar por el estado real del juego.
-const MOCK_WORDS = ['casa', 'árbol', 'luna', 'amistad', 'acordeón']
+import { useWordChainGame } from '../hooks/useWordChainGame'
 
 export function PlayPage() {
-  const hasWords = MOCK_WORDS.length > 0
+  const { words, score, status, error, isValidating, secondsLeft, nextLetter, submitWord, resetGame } =
+    useWordChainGame()
+
+  const isFinished = status === 'finished'
 
   return (
     <div
@@ -24,20 +25,38 @@ export function PlayPage() {
         <GameHeader />
 
         <Panel>
-          <StatsBar />
+          {isFinished ? (
+            <GameOverPanel score={score} wordsCount={words.length} onPlayAgain={resetGame} />
+          ) : (
+            <>
+              <StatsBar secondsLeft={secondsLeft} score={score} wordsCount={words.length} />
 
-          <div className="flex min-h-0 flex-1 flex-col">
-            <h2 className="mb-2 flex shrink-0 items-center gap-2 text-sm font-semibold text-ink/80">
-              <FiLink aria-hidden="true" /> Cadena de palabras
-            </h2>
-            {hasWords ? <WordChain words={MOCK_WORDS} /> : <EmptyChainState />}
-          </div>
+              <div className="flex min-h-0 flex-1 flex-col">
+                {words.length > 0 ? (
+                  <WordChain words={words} />
+                ) : (
+                  <EmptyChainState hasStarted={status !== 'idle'} />
+                )}
+              </div>
 
-          <NextLetterHint letter="A" />
+              {nextLetter && <NextLetterHint letter={nextLetter} />}
 
-          <WordInputForm />
+              <div>
+                <WordInputForm
+                  onSubmitWord={submitWord}
+                  disabled={isFinished}
+                  isValidating={isValidating}
+                  hasError={Boolean(error)}
+                />
 
-          <ErrorMessage message="La palabra ya fue utilizada" />
+                {error && (
+                  <div className="mt-1.5">
+                    <ErrorMessage message={error} />
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </Panel>
       </div>
     </div>
