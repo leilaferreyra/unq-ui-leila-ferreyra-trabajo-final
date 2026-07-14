@@ -19,16 +19,27 @@
   --color-stat-pink-icon: #ec6f9b;
   --color-stat-violet: #e6def9;
   --color-stat-violet-icon: #8b5cf6;
-  --color-stat-mint: #d7f5e6;
-  --color-stat-mint-icon: #34a876;
 
   /* Cadena de palabras (se van rotando) */
   --color-chain-pink: #fbdce6;
   --color-chain-lavender: #e3e0f7;
   --color-chain-amber: #fbe8d2;
+  --color-chain-amber-icon: #d99b3f;
 
   /* Estados de error/aviso */
   --color-error-bg: #fde2e2;
   --color-error-text: #d8483f;
   --color-hint-bg: #ece7fb;
+  --color-hint-border: #8b5cf6;
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
 }
