@@ -37,7 +37,7 @@ export function WordChain({ words }: WordChainProps) {
   }, [])
 
   return (
-    <div className="flex flex-col">
+    <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex h-5 shrink-0 items-center justify-center" aria-hidden="true">
         <span
           className={`text-xl leading-none font-bold text-ink/60 transition-opacity ${isScrolledDown ? 'opacity-100' : 'opacity-0'}`}
@@ -47,7 +47,7 @@ export function WordChain({ words }: WordChainProps) {
       </div>
       <div
         ref={containerRef}
-        className="scrollbar-hidden flex max-h-[15rem] flex-col overflow-y-auto sm:max-h-[17rem]"
+        className="scrollbar-hidden flex min-h-0 flex-1 flex-col overflow-y-auto"
       >
         {words.map((word, index) => (
           <div key={word} className="flex flex-col items-center">
