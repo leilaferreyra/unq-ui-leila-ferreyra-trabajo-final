@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
-import { FaHeart } from 'react-icons/fa'
 import { FiClock, FiEdit2, FiHelpCircle, FiUser } from 'react-icons/fi'
+import { TiHeartFullOutline } from 'react-icons/ti'
 import huella from '../assets/huella.png'
 import { getPlayerName, savePlayerName } from '../utils/storage'
 
@@ -49,7 +49,7 @@ export function HomePage() {
           className="mb-2 flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-10 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark sm:mb-3"
         >
           Comenzar
-          <FaHeart aria-hidden="true" />
+          <TiHeartFullOutline aria-hidden="true" />
         </button>
       </form>
 

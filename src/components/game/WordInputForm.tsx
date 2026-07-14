@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { FaHeart } from 'react-icons/fa'
+import { TiHeartFullOutline } from 'react-icons/ti'
 
 type WordInputFormProps = {
   onSubmitWord: (word: string) => Promise<void>
@@ -46,7 +46,7 @@ export function WordInputForm({ onSubmitWord, disabled, isValidating, hasError }
         className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark disabled:opacity-60"
       >
         Enviar
-        <FaHeart aria-hidden="true" />
+        <TiHeartFullOutline aria-hidden="true" />
       </button>
     </form>
   )

@@ -1,4 +1,4 @@
-import { FiHeart } from 'react-icons/fi'
+import { TiHeartFullOutline } from 'react-icons/ti'
 import miloCat from '../../assets/milo-cat.png'
 
 export function GameHeader() {
@@ -8,7 +8,7 @@ export function GameHeader() {
       <div className="flex flex-col items-start text-left">
         <h1 className="font-display text-2xl text-ink sm:text-4xl">Palabras Encadenadas</h1>
         <p className="flex items-center gap-1 text-sm text-ink/70 sm:text-base">
-          Pensá rápido y encadená las palabras <FiHeart className="text-brand-pink" aria-hidden="true" />
+          Pensá rápido y encadená las palabras <TiHeartFullOutline className="text-brand-pink" aria-hidden="true" />
         </p>
       </div>
     </header>
