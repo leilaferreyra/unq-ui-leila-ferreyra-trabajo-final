@@ -9,7 +9,9 @@ export function WordChainItem({ word, index }: WordChainItemProps) {
   const colorClassName = COLOR_CLASSES[index % COLOR_CLASSES.length]
 
   return (
-    <div className={`rounded-full ${colorClassName} px-4 py-2.5 text-center font-display text-base text-ink sm:px-6 sm:py-3 sm:text-lg`}>
+    <div
+      className={`flex h-full w-full items-center justify-center rounded-full ${colorClassName} px-4 text-center font-display text-base text-ink sm:px-6 sm:text-lg`}
+    >
       {word}
     </div>
   )
