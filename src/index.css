@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Georgia", "Times New Roman", serif;
+
+  /* Texto e íconos principales */
+  --color-ink: #362a6b;
+
+  /* Paneles y tarjetas (sobre la imagen de fondo) */
+  --color-panel: #fffaf9;
+  --color-card: #ffffffb3;
+
+  /* Acento principal (botón "Enviar", tiempo) */
+  --color-brand-pink: #ec6f9b;
+  --color-brand-pink-dark: #d94f80;
+
+  /* Stat cards */
+  --color-stat-pink: #fbdce6;
+  --color-stat-pink-icon: #ec6f9b;
+  --color-stat-violet: #e6def9;
+  --color-stat-violet-icon: #8b5cf6;
+  --color-stat-mint: #d7f5e6;
+  --color-stat-mint-icon: #34a876;
+
+  /* Cadena de palabras (se van rotando) */
+  --color-chain-pink: #fbdce6;
+  --color-chain-lavender: #e3e0f7;
+  --color-chain-amber: #fbe8d2;
+
+  /* Estados de error/aviso */
+  --color-error-bg: #fde2e2;
+  --color-error-text: #d8483f;
+  --color-hint-bg: #ece7fb;
+}
