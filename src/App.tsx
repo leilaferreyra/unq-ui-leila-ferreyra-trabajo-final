@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Routes, Route } from 'react-router'
 import { RequirePlayerName } from './components/layout/RequirePlayerName'
 import { RootLayout } from './components/layout/RootLayout'
 import { HomePage } from './pages/HomePage'
+import { InstructionsPage } from './pages/InstructionsPage'
 import { PlayPage } from './pages/PlayPage'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="instrucciones" element={<InstructionsPage />} />
           <Route element={<RequirePlayerName />}>
             <Route path="play" element={<PlayPage />} />
           </Route>

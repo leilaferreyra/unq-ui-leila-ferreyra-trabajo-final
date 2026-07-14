@@ -62,6 +62,7 @@ export function HomePage() {
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
+          onClick={() => navigate('/instrucciones')}
           className="flex items-center gap-2 rounded-2xl border border-stat-violet-icon/30 bg-stat-violet/40 py-2.5 pr-4 pl-2.5 text-left transition-colors hover:bg-stat-violet/60"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stat-violet text-stat-violet-icon">
