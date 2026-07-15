@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import huella from '../assets/huella.png'
 import { BackButton } from '../components/common/BackButton'
 import { StartButton } from '../components/common/StartButton'
+import { VariantBadge, VariantCard } from '../components/common/VariantCard'
 import { getColorVariant } from '../utils/colorVariants'
 
 type Instruction = {
@@ -60,20 +61,13 @@ export function InstructionsPage() {
           const variant = getColorVariant(index)
 
           return (
-            <div
-              key={text}
-              className={`flex items-start gap-3 rounded-2xl border bg-white px-4 py-3 ${variant.border}`}
-            >
-              <span
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${variant.iconBg} ${variant.iconColor}`}
-              >
-                {icon}
-              </span>
+            <VariantCard key={text} variant={variant} align="start">
+              <VariantBadge variant={variant}>{icon}</VariantBadge>
               <p className="text-sm text-ink">
                 {title && <span className="font-semibold">{title} </span>}
                 {text}
               </p>
-            </div>
+            </VariantCard>
           )
         })}
       </div>

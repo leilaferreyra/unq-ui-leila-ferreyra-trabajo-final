@@ -1,4 +1,5 @@
 import { FiLink, FiStar, FiUser } from 'react-icons/fi'
+import { VariantBadge, VariantCard } from '../common/VariantCard'
 import { getColorVariant } from '../../utils/colorVariants'
 
 type ScoreItemProps = {
@@ -12,26 +13,24 @@ export function ScoreItem({ position, name, score, wordsCount }: ScoreItemProps)
   const variant = getColorVariant(position - 1)
 
   return (
-    <div className={`flex items-center gap-3 rounded-2xl border bg-white px-4 py-3 ${variant.border}`}>
-      <span
-        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${variant.iconBg} ${variant.iconColor}`}
-      >
+    <VariantCard variant={variant}>
+      <VariantBadge variant={variant} size="sm">
         {position}
-      </span>
-      <span
-        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${variant.iconBg} ${variant.iconColor}`}
-      >
+      </VariantBadge>
+      <VariantBadge variant={variant}>
         <FiUser aria-hidden="true" />
-      </span>
-      <span className="min-w-0 flex-1 truncate font-semibold text-ink">{name}</span>
-      <span className={`flex shrink-0 items-center gap-1 text-sm font-semibold ${variant.iconColor}`}>
+      </VariantBadge>
+      <span className="min-w-0 flex-1 truncate text-sm font-semibold text-ink sm:text-base">{name}</span>
+      <span className={`flex shrink-0 items-center gap-1 text-xs font-semibold sm:text-sm ${variant.iconColor}`}>
         <FiStar aria-hidden="true" />
-        {score} puntos
+        {score}
+        <span className="hidden sm:inline"> puntos</span>
       </span>
-      <span className="flex shrink-0 items-center gap-1 text-sm text-ink/60">
+      <span className="flex shrink-0 items-center gap-1 text-xs text-ink/60 sm:text-sm">
         <FiLink aria-hidden="true" />
-        {wordsCount} palabras
+        {wordsCount}
+        <span className="hidden sm:inline"> palabras</span>
       </span>
-    </div>
+    </VariantCard>
   )
 }
