@@ -19,8 +19,6 @@ export function WordInputForm({ onSubmitWord, isValidating, hasError }: WordInpu
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!value.trim()) return
-
     await onSubmitWord(value)
     setValue('')
   }

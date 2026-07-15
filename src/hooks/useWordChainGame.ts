@@ -34,7 +34,10 @@ export function useWordChainGame() {
       if (status === 'finished' || isValidating) return
 
       const word = normalizeWord(rawWord)
-      if (!word) return
+      if (!word) {
+        setError('Ingresá una palabra')
+        return
+      }
 
       if (status === 'idle') {
         setStatus('playing')
