@@ -24,7 +24,7 @@ export function useWordChainGame() {
     })
   }, [score, words])
 
-  const { secondsLeft, restart, stop } = useTimer(TURN_SECONDS, handleExpire)
+  const { secondsLeft, restart } = useTimer(TURN_SECONDS, handleExpire)
 
   const lastWord = words[words.length - 1]
   const nextLetter = lastWord ? lastWord.at(-1)?.toUpperCase() ?? null : null
@@ -73,14 +73,6 @@ export function useWordChainGame() {
     [words, lastWord, status, isValidating, restart],
   )
 
-  const resetGame = useCallback(() => {
-    setWords([])
-    setScore(0)
-    setStatus('idle')
-    setError(null)
-    stop()
-  }, [stop])
-
   return useMemo(
     () => ({
       words,
@@ -91,8 +83,7 @@ export function useWordChainGame() {
       secondsLeft,
       nextLetter,
       submitWord,
-      resetGame,
     }),
-    [words, score, status, error, isValidating, secondsLeft, nextLetter, submitWord, resetGame],
+    [words, score, status, error, isValidating, secondsLeft, nextLetter, submitWord],
   )
 }

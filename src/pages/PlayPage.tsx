@@ -1,20 +1,29 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import { StatsBar } from '../components/game/StatsBar'
 import { WordChain } from '../components/game/WordChain'
 import { EmptyChainState } from '../components/game/EmptyChainState'
 import { NextLetterHint } from '../components/game/NextLetterHint'
 import { WordInputForm } from '../components/game/WordInputForm'
 import { ErrorMessage } from '../components/game/ErrorMessage'
-import { GameOverPanel } from '../components/game/GameOverPanel'
 import { useWordChainGame } from '../hooks/useWordChainGame'
+import type { GameResult } from '../types/game'
 
 export function PlayPage() {
-  const { words, score, status, error, isValidating, secondsLeft, nextLetter, submitWord, resetGame } =
-    useWordChainGame()
+  const navigate = useNavigate()
+  const { words, score, status, error, isValidating, secondsLeft, nextLetter, submitWord } = useWordChainGame()
 
   const isFinished = status === 'finished'
 
+  useEffect(() => {
+    if (isFinished) {
+      const result: GameResult = { score, wordsCount: words.length }
+      navigate('/score', { state: result, replace: true })
+    }
+  }, [isFinished, score, words.length, navigate])
+
   if (isFinished) {
-    return <GameOverPanel score={score} wordsCount={words.length} onPlayAgain={resetGame} />
+    return null
   }
 
   return (
@@ -28,12 +37,7 @@ export function PlayPage() {
       {nextLetter && <NextLetterHint letter={nextLetter} />}
 
       <div>
-        <WordInputForm
-          onSubmitWord={submitWord}
-          disabled={isFinished}
-          isValidating={isValidating}
-          hasError={Boolean(error)}
-        />
+        <WordInputForm onSubmitWord={submitWord} isValidating={isValidating} hasError={Boolean(error)} />
 
         {error && (
           <div className="mt-1.5">

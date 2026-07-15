@@ -3,12 +3,11 @@ import { TiHeartFullOutline } from 'react-icons/ti'
 
 type WordInputFormProps = {
   onSubmitWord: (word: string) => Promise<void>
-  disabled: boolean
   isValidating: boolean
   hasError: boolean
 }
 
-export function WordInputForm({ onSubmitWord, disabled, isValidating, hasError }: WordInputFormProps) {
+export function WordInputForm({ onSubmitWord, isValidating, hasError }: WordInputFormProps) {
   const [value, setValue] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -34,7 +33,6 @@ export function WordInputForm({ onSubmitWord, disabled, isValidating, hasError }
         value={value}
         onChange={(event) => setValue(event.target.value)}
         placeholder="Escribí una palabra..."
-        disabled={disabled}
         autoFocus
         className={`flex-1 rounded-2xl border bg-white px-5 py-3 text-ink placeholder:text-ink/40 focus:outline-none focus:ring-1 disabled:opacity-60 ${
           hasError ? 'border-error-text focus:ring-error-text' : 'border-ink/20 focus:ring-brand-pink'
@@ -42,7 +40,7 @@ export function WordInputForm({ onSubmitWord, disabled, isValidating, hasError }
       />
       <button
         type="submit"
-        disabled={disabled || isValidating}
+        disabled={isValidating}
         className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark disabled:opacity-60"
       >
         Enviar
