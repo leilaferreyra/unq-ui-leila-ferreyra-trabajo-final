@@ -1,15 +1,12 @@
 import type { ReactNode } from 'react'
-import { useNavigate } from 'react-router'
 import { FaTrophy } from 'react-icons/fa'
-import { FiArrowLeft, FiBookOpen, FiClock, FiLink, FiRefreshCw, FiStar, FiX } from 'react-icons/fi'
+import { FiBookOpen, FiClock, FiLink, FiRefreshCw, FiStar, FiX } from 'react-icons/fi'
 import { IoHourglassOutline } from 'react-icons/io5'
+import { useNavigate } from 'react-router'
 import huella from '../assets/huella.png'
-
-const VARIANTS = [
-  { border: 'border-stat-violet-icon/30', iconBg: 'bg-stat-violet', iconColor: 'text-stat-violet-icon' },
-  { border: 'border-stat-pink-icon/30', iconBg: 'bg-stat-pink', iconColor: 'text-stat-pink-icon' },
-  { border: 'border-chain-amber-icon/30', iconBg: 'bg-chain-amber', iconColor: 'text-chain-amber-icon' },
-] as const
+import { BackButton } from '../components/common/BackButton'
+import { StartButton } from '../components/common/StartButton'
+import { getColorVariant } from '../utils/colorVariants'
 
 type Instruction = {
   icon: ReactNode
@@ -68,7 +65,7 @@ export function InstructionsPage() {
 
       <div className="scrollbar-hidden grid min-h-0 flex-1 grid-cols-1 gap-3 overflow-y-auto sm:grid-cols-2">
         {INSTRUCTIONS.map(({ icon, title, text }, index) => {
-          const variant = VARIANTS[index % VARIANTS.length]
+          const variant = getColorVariant(index)
 
           return (
             <div
@@ -89,14 +86,10 @@ export function InstructionsPage() {
         })}
       </div>
 
-      <button
-        type="button"
-        onClick={() => navigate('/')}
-        className="mt-2 flex items-center justify-center gap-2 self-center rounded-2xl bg-brand-pink px-10 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark sm:mt-3"
-      >
-        <FiArrowLeft aria-hidden="true" />
-        Volver
-      </button>
+      <div className="mt-2 flex items-center justify-center gap-3 sm:mt-3">
+        <BackButton />
+        <StartButton onClick={() => navigate('/play')} />
+      </div>
     </div>
   )
 }
