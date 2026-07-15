@@ -20,16 +20,16 @@ export function useTimer(durationSeconds: number, onExpire: () => void) {
     clearTick()
     setSecondsLeft(durationSeconds)
     intervalRef.current = window.setInterval(() => {
-      setSecondsLeft((prev) => {
-        if (prev === null || prev <= 1) {
-          clearTick()
-          onExpireRef.current()
-          return 0
-        }
-        return prev - 1
-      })
+      setSecondsLeft((prev) => (prev === null ? prev : Math.max(prev - 1, 0)))
     }, 1000)
   }, [durationSeconds, clearTick])
+
+  useEffect(() => {
+    if (secondsLeft === 0) {
+      clearTick()
+      onExpireRef.current()
+    }
+  }, [secondsLeft, clearTick])
 
   const stop = useCallback(() => {
     clearTick()

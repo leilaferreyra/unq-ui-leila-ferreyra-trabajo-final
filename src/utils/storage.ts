@@ -31,3 +31,7 @@ export function addHistoryEntry(entry: HistoryEntry): void {
   const history = getHistory()
   localStorage.setItem(HISTORY_KEY, JSON.stringify([...history, entry]))
 }
+
+export function getHistorySortedByScore(): HistoryEntry[] {
+  return getHistory().sort((a, b) => b.score - a.score)
+}

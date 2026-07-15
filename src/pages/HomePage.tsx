@@ -1,9 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
-import { FiClock, FiEdit2, FiHelpCircle, FiUser } from 'react-icons/fi'
 import { FaHeart } from 'react-icons/fa'
-import { TiHeartFullOutline } from 'react-icons/ti'
+import { FiAward, FiEdit2, FiHelpCircle, FiUser } from 'react-icons/fi'
 import huella from '../assets/huella.png'
+import { StartButton } from '../components/common/StartButton'
 import { getPlayerName, savePlayerName } from '../utils/storage'
 
 const DEFAULT_NAME = 'Anónimo'
@@ -15,7 +15,7 @@ export function HomePage() {
   const handleStart = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     savePlayerName(name.trim() || DEFAULT_NAME)
-    navigate('/play')
+    navigate('/play', { state: { started: true } })
   }
 
   return (
@@ -45,13 +45,9 @@ export function HomePage() {
           <FiEdit2 className="shrink-0 text-brand-pink" aria-hidden="true" />
         </label>
 
-        <button
-          type="submit"
-          className="mb-2 flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-10 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark sm:mb-3"
-        >
-          Comenzar
-          <TiHeartFullOutline aria-hidden="true" />
-        </button>
+        <div className="mb-2 self-center sm:mb-3">
+          <StartButton type="submit" />
+        </div>
       </form>
 
       <div className="mb-2 flex items-center gap-3 sm:mb-3" aria-hidden="true">
@@ -73,12 +69,13 @@ export function HomePage() {
         </button>
         <button
           type="button"
+          onClick={() => navigate('/puntajes')}
           className="flex items-center gap-2 rounded-2xl border border-chain-amber-icon/30 bg-chain-amber/40 py-2.5 pr-4 pl-2.5 text-left transition-colors hover:bg-chain-amber/60"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-chain-amber text-chain-amber-icon">
-            <FiClock aria-hidden="true" />
+            <FiAward aria-hidden="true" />
           </span>
-          <span className="font-semibold text-ink">Historial</span>
+          <span className="font-semibold text-ink">Puntajes</span>
         </button>
       </div>
     </div>

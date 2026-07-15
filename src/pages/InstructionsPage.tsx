@@ -1,14 +1,10 @@
 import type { ReactNode } from 'react'
+import { FiBookOpen, FiCheckCircle, FiClock, FiLink, FiX, FiPlay} from 'react-icons/fi'
 import { useNavigate } from 'react-router'
-import { FaTrophy } from 'react-icons/fa'
-import { FiArrowLeft, FiBookOpen, FiCheckCircle, FiClock, FiLink, FiX } from 'react-icons/fi'
 import huella from '../assets/huella.png'
-
-const VARIANTS = [
-  { border: 'border-stat-violet-icon/30', iconBg: 'bg-stat-violet', iconColor: 'text-stat-violet-icon' },
-  { border: 'border-stat-pink-icon/30', iconBg: 'bg-stat-pink', iconColor: 'text-stat-pink-icon' },
-  { border: 'border-chain-amber-icon/30', iconBg: 'bg-chain-amber', iconColor: 'text-chain-amber-icon' },
-] as const
+import { BackButton } from '../components/common/BackButton'
+import { StartButton } from '../components/common/StartButton'
+import { getColorVariant } from '../utils/colorVariants'
 
 type Instruction = {
   icon: ReactNode
@@ -20,7 +16,7 @@ const INSTRUCTIONS: Instruction[] = [
   {
     icon: <FiLink aria-hidden="true" />,
     title: 'Encadená palabras:',
-    text: 'La nueva debe empezar con la última letra de la anterior.',
+    text: 'La nueva palabra debe empezar con la última letra de la anterior.',
   },
   {
     icon: <FiClock aria-hidden="true" />,
@@ -35,18 +31,18 @@ const INSTRUCTIONS: Instruction[] = [
   {
     icon: <FiX aria-hidden="true" />,
     title: 'Sin repetir:',
-    text: 'No podés usar una palabra que ya haya salido.',
+    text: 'No podés usar una palabra que ya hayas ingresado.',
   },
   {
     icon: <FiBookOpen aria-hidden="true" />,
     title: 'Palabras reales:',
-    text: 'Todas deben existir en el diccionario.',
+    text: 'Todas las palabras deben existir en el diccionario.',
   },
   {
-    icon: <FaTrophy aria-hidden="true" />,
-    title: 'Final:',
-    text: 'Al terminar, verás tu puntaje y cantidad de palabras encadenadas.',
-  },
+  icon: <FiPlay aria-hidden="true" />,
+  title: 'Arranque:',
+  text: 'El reloj empieza a correr con tu primera palabra, sea válida o no.',
+},
 ]
 
 export function InstructionsPage() {
@@ -61,7 +57,7 @@ export function InstructionsPage() {
 
       <div className="scrollbar-hidden grid min-h-0 flex-1 grid-cols-1 gap-3 overflow-y-auto sm:grid-cols-2">
         {INSTRUCTIONS.map(({ icon, title, text }, index) => {
-          const variant = VARIANTS[index % VARIANTS.length]
+          const variant = getColorVariant(index)
 
           return (
             <div
@@ -82,14 +78,10 @@ export function InstructionsPage() {
         })}
       </div>
 
-      <button
-        type="button"
-        onClick={() => navigate('/')}
-        className="mt-2 flex items-center justify-center gap-2 self-center rounded-2xl bg-brand-pink px-10 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark sm:mt-3"
-      >
-        <FiArrowLeft aria-hidden="true" />
-        Volver
-      </button>
+      <div className="mt-2 flex items-center justify-center gap-3 sm:mt-3">
+        <BackButton />
+        <StartButton onClick={() => navigate('/play', { state: { started: true } })} />
+      </div>
     </div>
   )
 }
