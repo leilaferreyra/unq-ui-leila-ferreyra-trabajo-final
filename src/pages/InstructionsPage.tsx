@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router'
 import { FaTrophy } from 'react-icons/fa'
-import { FiArrowLeft, FiBookOpen, FiClock, FiLink, FiRefreshCw, FiStar, FiX } from 'react-icons/fi'
-import { IoHourglassOutline } from 'react-icons/io5'
+import { FiArrowLeft, FiBookOpen, FiCheckCircle, FiClock, FiLink, FiX } from 'react-icons/fi'
 import huella from '../assets/huella.png'
 
 const VARIANTS = [
@@ -21,38 +20,32 @@ const INSTRUCTIONS: Instruction[] = [
   {
     icon: <FiLink aria-hidden="true" />,
     title: 'Encadená palabras:',
-    text: 'cada palabra nueva tiene que empezar con la última letra de la palabra anterior.',
+    text: 'La nueva debe empezar con la última letra de la anterior.',
   },
   {
     icon: <FiClock aria-hidden="true" />,
-    text: 'Tenés 15 segundos por turno para escribir tu palabra.',
+    title: 'Tiempo límite:',
+    text: 'Tenés 15 segundos por turno. Si se acaba, termina la partida.',
   },
   {
-    icon: <FiRefreshCw aria-hidden="true" />,
-    title: 'Cada acierto reinicia el reloj:',
-    text: 'si la palabra es válida, volvés a tener 15 segundos completos para la siguiente.',
-  },
-  {
-    icon: <IoHourglassOutline aria-hidden="true" />,
-    text: 'Si se acaba el tiempo, termina la partida.',
+    icon: <FiCheckCircle aria-hidden="true" />,
+    title: 'Aciertos:',
+    text: 'Cada palabra válida reinicia el reloj y suma puntos según su longitud.',
   },
   {
     icon: <FiX aria-hidden="true" />,
-    title: 'No repitas palabras:',
-    text: 'si ya la usaste en esta partida, no vale.',
+    title: 'Sin repetir:',
+    text: 'No podés usar una palabra que ya haya salido.',
   },
   {
     icon: <FiBookOpen aria-hidden="true" />,
-    title: 'Tiene que existir:',
-    text: 'la palabra se valida contra un diccionario real.',
-  },
-  {
-    icon: <FiStar aria-hidden="true" />,
-    text: 'Sumás puntos según la longitud de cada palabra que encadenás.',
+    title: 'Palabras reales:',
+    text: 'Todas deben existir en el diccionario.',
   },
   {
     icon: <FaTrophy aria-hidden="true" />,
-    text: 'Al terminar, ves tu puntaje final y cuántas palabras lograste encadenar.',
+    title: 'Final:',
+    text: 'Al terminar, verás tu puntaje y cantidad de palabras encadenadas.',
   },
 ]
 

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
 import { FiClock, FiEdit2, FiHelpCircle, FiUser } from 'react-icons/fi'
+import { FaHeart } from 'react-icons/fa'
 import { TiHeartFullOutline } from 'react-icons/ti'
 import huella from '../assets/huella.png'
 import { getPlayerName, savePlayerName } from '../utils/storage'
@@ -55,7 +56,7 @@ export function HomePage() {
 
       <div className="mb-2 flex items-center gap-3 sm:mb-3" aria-hidden="true">
         <div className="h-px flex-1 bg-ink/10" />
-        <img src={huella} alt="" className="h-6 w-auto opacity-50" />
+        <FaHeart className="text-brand-pink/50" />
         <div className="h-px flex-1 bg-ink/10" />
       </div>
 
