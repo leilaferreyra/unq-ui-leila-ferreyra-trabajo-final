@@ -39,7 +39,7 @@ export function HomePage() {
               onChange={(event) => setName(event.target.value)}
               placeholder={DEFAULT_NAME}
               autoFocus
-              className="w-full font-display text-lg text-ink focus:outline-none"
+              className="w-full min-w-0 font-display text-base text-ink focus:outline-none sm:text-lg"
             />
           </span>
           <FiEdit2 className="shrink-0 text-brand-pink" aria-hidden="true" />
@@ -60,22 +60,22 @@ export function HomePage() {
         <button
           type="button"
           onClick={() => navigate('/instrucciones')}
-          className="flex items-center gap-2 rounded-2xl border border-stat-violet-icon/30 bg-stat-violet/40 py-2.5 pr-4 pl-2.5 text-left transition-colors hover:bg-stat-violet/60"
+          className="flex min-w-0 items-center gap-1.5 rounded-2xl border border-stat-violet-icon/30 bg-stat-violet/40 py-2.5 pr-3 pl-2.5 text-left transition-colors hover:bg-stat-violet/60 sm:gap-2 sm:pr-4"
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-stat-violet text-stat-violet-icon">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-stat-violet text-stat-violet-icon sm:h-9 sm:w-9">
             <FiHelpCircle aria-hidden="true" />
           </span>
-          <span className="font-semibold text-ink">Instrucciones de juego</span>
+          <span className="min-w-0 truncate text-sm font-semibold text-ink sm:text-base">Instrucciones</span>
         </button>
         <button
           type="button"
           onClick={() => navigate('/puntajes')}
-          className="flex items-center gap-2 rounded-2xl border border-chain-amber-icon/30 bg-chain-amber/40 py-2.5 pr-4 pl-2.5 text-left transition-colors hover:bg-chain-amber/60"
+          className="flex min-w-0 items-center gap-1.5 rounded-2xl border border-chain-amber-icon/30 bg-chain-amber/40 py-2.5 pr-3 pl-2.5 text-left transition-colors hover:bg-chain-amber/60 sm:gap-2 sm:pr-4"
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-chain-amber text-chain-amber-icon">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-chain-amber text-chain-amber-icon sm:h-9 sm:w-9">
             <FiAward aria-hidden="true" />
           </span>
-          <span className="font-semibold text-ink">Puntajes</span>
+          <span className="min-w-0 truncate text-sm font-semibold text-ink sm:text-base">Puntajes</span>
         </button>
       </div>
     </div>

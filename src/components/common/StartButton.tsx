@@ -10,7 +10,7 @@ export function StartButton({ type = 'button', onClick }: StartButtonProps) {
     <button
       type={type}
       onClick={onClick}
-      className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark"
+      className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-6 py-3 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-pink-dark sm:px-8 sm:text-base"
     >
       Comenzar
       <TiHeartFullOutline aria-hidden="true" />

@@ -38,7 +38,7 @@ export function GameOverPanel({ score, wordsCount, onPlayAgain }: GameOverPanelP
         <button
           type="button"
           onClick={onPlayAgain}
-          className="rounded-2xl bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark"
+          className="flex items-center justify-center rounded-2xl bg-brand-pink px-6 py-3 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-pink-dark sm:px-8 sm:text-base"
         >
           Jugar de nuevo
         </button>
