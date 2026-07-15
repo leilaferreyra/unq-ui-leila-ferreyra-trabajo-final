@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { wordExistsInDictionary } from '../services/wordApi'
 import type { GameStatus } from '../types/game'
 import { normalizeWord } from '../utils/normalizeWord'
-import { addHistoryEntry, getPlayerName } from '../utils/storage'
+import { addScoreEntry, getPlayerName } from '../utils/storage'
 import { useTimer } from './useTimer'
 
 const TURN_SECONDS = 15
@@ -16,7 +16,7 @@ export function useWordChainGame() {
 
   const handleExpire = useCallback(() => {
     setStatus('finished')
-    addHistoryEntry({
+    addScoreEntry({
       name: getPlayerName() ?? 'Anónimo',
       score,
       wordsCount: words.length,

@@ -1,7 +1,8 @@
 const PLAYER_NAME_KEY = 'palabras-encadenadas:player-name'
-const HISTORY_KEY = 'palabras-encadenadas:history'
+const SCORES_KEY = 'palabras-encadenadas:scores'
+const TOP_SCORES_LIMIT = 10
 
-export type HistoryEntry = {
+export type ScoreEntry = {
   name: string
   score: number
   wordsCount: number
@@ -16,22 +17,24 @@ export function savePlayerName(name: string): void {
   localStorage.setItem(PLAYER_NAME_KEY, name)
 }
 
-export function getHistory(): HistoryEntry[] {
-  const raw = localStorage.getItem(HISTORY_KEY)
+export function getScores(): ScoreEntry[] {
+  const raw = localStorage.getItem(SCORES_KEY)
   if (!raw) return []
 
   try {
-    return JSON.parse(raw) as HistoryEntry[]
+    return JSON.parse(raw) as ScoreEntry[]
   } catch {
     return []
   }
 }
 
-export function addHistoryEntry(entry: HistoryEntry): void {
-  const history = getHistory()
-  localStorage.setItem(HISTORY_KEY, JSON.stringify([...history, entry]))
+export function addScoreEntry(entry: ScoreEntry): void {
+  const scores = getScores()
+  localStorage.setItem(SCORES_KEY, JSON.stringify([...scores, entry]))
 }
 
-export function getHistorySortedByScore(): HistoryEntry[] {
-  return getHistory().sort((a, b) => b.score - a.score)
+export function getTopScores(): ScoreEntry[] {
+  return getScores()
+    .sort((a, b) => b.score - a.score)
+    .slice(0, TOP_SCORES_LIMIT)
 }

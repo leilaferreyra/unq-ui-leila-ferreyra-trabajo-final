@@ -2,25 +2,25 @@ import { useNavigate } from 'react-router'
 import huella from '../assets/huella.png'
 import { BackButton } from '../components/common/BackButton'
 import { StartButton } from '../components/common/StartButton'
-import { HistoryItem } from '../components/history/HistoryItem'
-import { getHistorySortedByScore } from '../utils/storage'
+import { ScoreItem } from '../components/scores/ScoreItem'
+import { getTopScores } from '../utils/storage'
 
-export function HistoryPage() {
+export function ScoresPage() {
   const navigate = useNavigate()
-  const history = getHistorySortedByScore()
+  const scores = getTopScores()
 
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-3 sm:gap-4">
       <div className="mb-2 flex flex-col items-center gap-1 text-center sm:mb-3">
         <img src={huella} alt="" className="h-8 w-auto opacity-70" />
-        <h2 className="font-display text-2xl text-ink sm:text-3xl">Historial</h2>
-        <p className="text-sm text-ink/70">Tus mejores partidas de mayor a menor puntaje</p>
+        <h2 className="font-display text-2xl text-ink sm:text-3xl">Puntajes</h2>
+        <p className="text-sm text-ink/70">Los mejores 10 puntajes de mayor a menor</p>
       </div>
 
-      {history.length > 0 ? (
+      {scores.length > 0 ? (
         <div className="scrollbar-hidden flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto">
-          {history.map((entry, index) => (
-            <HistoryItem
+          {scores.map((entry, index) => (
+            <ScoreItem
               key={`${index}-${entry.date}-${entry.name}`}
               position={index + 1}
               name={entry.name}
@@ -38,7 +38,7 @@ export function HistoryPage() {
 
       <div className="mt-2 flex items-center justify-center gap-3 sm:mt-3">
         <BackButton />
-        <StartButton onClick={() => navigate('/play')} />
+        <StartButton onClick={() => navigate('/play', { state: { started: true } })} />
       </div>
     </div>
   )

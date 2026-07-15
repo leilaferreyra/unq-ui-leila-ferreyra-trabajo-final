@@ -1,14 +1,14 @@
 import { FiLink, FiStar, FiUser } from 'react-icons/fi'
 import { getColorVariant } from '../../utils/colorVariants'
 
-type HistoryItemProps = {
+type ScoreItemProps = {
   position: number
   name: string
   score: number
   wordsCount: number
 }
 
-export function HistoryItem({ position, name, score, wordsCount }: HistoryItemProps) {
+export function ScoreItem({ position, name, score, wordsCount }: ScoreItemProps) {
   const variant = getColorVariant(position - 1)
 
   return (
