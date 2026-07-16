@@ -6,13 +6,14 @@ type Variant = (typeof COLOR_VARIANTS)[number]
 type VariantCardProps = {
   variant: Variant
   align?: 'start' | 'center'
+  className?: string
   children: ReactNode
 }
 
-export function VariantCard({ variant, align = 'center', children }: VariantCardProps) {
+export function VariantCard({ variant, align = 'center', className = '', children }: VariantCardProps) {
   return (
     <div
-      className={`flex gap-2 rounded-2xl border bg-white px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3 ${align === 'start' ? 'items-start' : 'items-center'} ${variant.border}`}
+      className={`flex gap-2 rounded-2xl border bg-white px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3 ${align === 'start' ? 'items-start' : 'items-center'} ${variant.border} ${className}`}
     >
       {children}
     </div>

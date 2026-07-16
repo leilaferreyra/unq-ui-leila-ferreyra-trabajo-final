@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useLayoutEffect, useRef, type ReactNode } from 'react'
 import { FiBookOpen, FiCheckCircle, FiClock, FiLink, FiPlay, FiX } from 'react-icons/fi'
 import { TiHeartFullOutline } from 'react-icons/ti'
 import { useNavigate } from 'react-router'
@@ -50,6 +50,27 @@ const INSTRUCTIONS: Instruction[] = [
 
 export function InstructionsPage() {
   const navigate = useNavigate()
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+
+    const fitColumns = () => {
+      grid.classList.remove('grid-cols-1')
+      grid.classList.add('grid-cols-2')
+
+      if (grid.scrollHeight > grid.clientHeight + 1) {
+        grid.classList.remove('grid-cols-2')
+        grid.classList.add('grid-cols-1')
+      }
+    }
+
+    fitColumns()
+    const resizeObserver = new ResizeObserver(fitColumns)
+    resizeObserver.observe(grid)
+    return () => resizeObserver.disconnect()
+  }, [])
 
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-3 sm:gap-4">
@@ -58,14 +79,17 @@ export function InstructionsPage() {
         <h2 className="font-display text-2xl text-ink sm:text-3xl">Instrucciones de juego</h2>
       </div>
 
-      <div className="scrollbar-hidden grid min-h-0 flex-1 grid-cols-1 gap-3 overflow-y-auto sm:grid-cols-2">
+      <div
+        ref={gridRef}
+        className="scrollbar-hidden grid min-h-0 flex-1 grid-cols-2 gap-3 overflow-y-auto [grid-auto-rows:minmax(min-content,1fr)]"
+      >
         {INSTRUCTIONS.map(({ icon, title, text }, index) => {
           const variant = getColorVariant(index)
 
           return (
-            <VariantCard key={text} variant={variant} align="start">
+            <VariantCard key={text} variant={variant}>
               <VariantBadge variant={variant}>{icon}</VariantBadge>
-              <p className="text-sm text-ink">
+              <p className="text-xs text-ink sm:text-sm">
                 {title && <span className="font-semibold">{title} </span>}
                 {text}
               </p>
