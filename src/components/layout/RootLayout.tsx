@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 import backgroundImage from '../../assets/background.png'
-import { Panel } from '../common/Panel'
+import { Panel } from './Panel'
 import { GameHeader } from '../game/GameHeader'
 
 export function RootLayout() {
