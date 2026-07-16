@@ -31,12 +31,7 @@ export function useTimer(durationSeconds: number, onExpire: () => void) {
     }
   }, [secondsLeft, clearTick])
 
-  const stop = useCallback(() => {
-    clearTick()
-    setSecondsLeft(null)
-  }, [clearTick])
-
   useEffect(() => clearTick, [clearTick])
 
-  return { secondsLeft, restart, stop }
+  return { secondsLeft, restart }
 }
