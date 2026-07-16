@@ -1,7 +1,9 @@
+import { TiHeartFullOutline } from 'react-icons/ti'
 import { useNavigate } from 'react-router'
 import huella from '../assets/huella.png'
 import { BackButton } from '../components/common/BackButton'
-import { StartButton } from '../components/common/StartButton'
+import { ButtonRow } from '../components/common/ButtonRow'
+import { PrimaryButton } from '../components/common/PrimaryButton'
 import { ScoreItem } from '../components/scores/ScoreItem'
 import { getTopScores } from '../utils/storage'
 
@@ -36,10 +38,17 @@ export function ScoresPage() {
         </div>
       )}
 
-      <div className="mt-2 flex items-center justify-center gap-3 sm:mt-3">
-        <BackButton />
-        <StartButton onClick={() => navigate('/play', { state: { started: true } })} />
-      </div>
+      <ButtonRow
+        start={<BackButton />}
+        end={
+          <PrimaryButton
+            onClick={() => navigate('/play', { state: { started: true } })}
+            icon={<TiHeartFullOutline aria-hidden="true" />}
+          >
+            Comenzar
+          </PrimaryButton>
+        }
+      />
     </div>
   )
 }

@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
 import { FiBookOpen, FiCheckCircle, FiClock, FiLink, FiX, FiPlay} from 'react-icons/fi'
+import { TiHeartFullOutline } from 'react-icons/ti'
 import { useNavigate } from 'react-router'
 import huella from '../assets/huella.png'
 import { BackButton } from '../components/common/BackButton'
-import { StartButton } from '../components/common/StartButton'
+import { ButtonRow } from '../components/common/ButtonRow'
+import { PrimaryButton } from '../components/common/PrimaryButton'
 import { VariantBadge, VariantCard } from '../components/common/VariantCard'
 import { getColorVariant } from '../utils/colorVariants'
 
@@ -72,10 +74,17 @@ export function InstructionsPage() {
         })}
       </div>
 
-      <div className="mt-2 flex items-center justify-center gap-3 sm:mt-3">
-        <BackButton />
-        <StartButton onClick={() => navigate('/play', { state: { started: true } })} />
-      </div>
+      <ButtonRow
+        start={<BackButton />}
+        end={
+          <PrimaryButton
+            onClick={() => navigate('/play', { state: { started: true } })}
+            icon={<TiHeartFullOutline aria-hidden="true" />}
+          >
+            Comenzar
+          </PrimaryButton>
+        }
+      />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { FiLink, FiStar } from 'react-icons/fi'
 import huella from '../../assets/huella.png'
 import { BackButton } from '../common/BackButton'
+import { ButtonRow } from '../common/ButtonRow'
+import { PrimaryButton } from '../common/PrimaryButton'
 import { StatCard } from './StatCard'
 
 type GameOverPanelProps = {
@@ -33,16 +35,10 @@ export function GameOverPanel({ score, wordsCount, onPlayAgain }: GameOverPanelP
         />
       </div>
 
-      <div className="mt-2 flex items-center gap-3">
-        <BackButton />
-        <button
-          type="button"
-          onClick={onPlayAgain}
-          className="flex items-center justify-center rounded-2xl bg-brand-pink px-6 py-3 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-pink-dark sm:px-8 sm:text-base"
-        >
-          Jugar de nuevo
-        </button>
-      </div>
+      <ButtonRow
+        start={<BackButton />}
+        end={<PrimaryButton onClick={onPlayAgain}>Jugar de nuevo</PrimaryButton>}
+      />
     </div>
   )
 }

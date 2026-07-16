@@ -2,8 +2,9 @@ import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
 import { FaHeart } from 'react-icons/fa'
 import { FiAward, FiEdit2, FiHelpCircle, FiUser } from 'react-icons/fi'
+import { TiHeartFullOutline } from 'react-icons/ti'
 import huella from '../assets/huella.png'
-import { StartButton } from '../components/common/StartButton'
+import { PrimaryButton } from '../components/common/PrimaryButton'
 import { getPlayerName, savePlayerName } from '../utils/storage'
 
 const DEFAULT_NAME = 'Anónimo'
@@ -46,7 +47,9 @@ export function HomePage() {
         </label>
 
         <div className="mb-2 self-center sm:mb-3">
-          <StartButton type="submit" />
+          <PrimaryButton type="submit" icon={<TiHeartFullOutline aria-hidden="true" />}>
+            Comenzar
+          </PrimaryButton>
         </div>
       </form>
 
