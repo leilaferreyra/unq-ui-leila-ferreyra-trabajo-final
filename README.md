@@ -2,6 +2,8 @@
 
 UIs » Trabajo Final Integrador (TFI)
 
+![alt text](image.png)
+
 ## El Juego
 
 Formá la cadena más larga posible de palabras válidas antes de que se agote el tiempo.
