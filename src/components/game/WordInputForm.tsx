@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { TiHeartFullOutline } from 'react-icons/ti'
+import { PrimaryButton } from '../common/PrimaryButton'
 
 type WordInputFormProps = {
   onSubmitWord: (word: string) => Promise<void>
@@ -36,14 +37,9 @@ export function WordInputForm({ onSubmitWord, isValidating, hasError }: WordInpu
           hasError ? 'border-error-text focus:ring-error-text' : 'border-ink/20 focus:ring-brand-pink'
         }`}
       />
-      <button
-        type="submit"
-        disabled={isValidating}
-        className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-pink-dark disabled:opacity-60"
-      >
+      <PrimaryButton type="submit" disabled={isValidating} icon={<TiHeartFullOutline aria-hidden="true" />}>
         Enviar
-        <TiHeartFullOutline aria-hidden="true" />
-      </button>
+      </PrimaryButton>
     </form>
   )
 }
