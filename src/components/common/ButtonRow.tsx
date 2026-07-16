@@ -8,8 +8,8 @@ type ButtonRowProps = {
 export function ButtonRow({ start, end }: ButtonRowProps) {
   return (
     <div className="mt-2 grid w-full grid-cols-2 gap-3 sm:mt-3">
-      <div className="flex justify-end">{start}</div>
-      <div className="flex justify-start">{end}</div>
+      <div className="flex min-w-0 justify-end">{start}</div>
+      <div className="flex min-w-0 justify-start">{end}</div>
     </div>
   )
 }

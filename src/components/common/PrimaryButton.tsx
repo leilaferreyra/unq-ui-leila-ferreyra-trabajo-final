@@ -14,10 +14,10 @@ export function PrimaryButton({ children, type = 'button', onClick, icon, disabl
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="flex items-center justify-center gap-2 rounded-2xl bg-brand-pink px-6 py-3 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-brand-pink-dark disabled:opacity-60 sm:px-8 sm:text-base"
+      className="flex h-full min-w-0 items-center justify-center gap-2 rounded-2xl bg-brand-pink px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-pink-dark disabled:opacity-60 sm:px-8 sm:text-base"
     >
-      {children}
-      {icon}
+      <span>{children}</span>
+      {icon && <span className="shrink-0">{icon}</span>}
     </button>
   )
 }
