@@ -10,7 +10,7 @@ export function WordChainItem({ word, index }: WordChainItemProps) {
 
   return (
     <div
-      className={`flex h-full w-full items-center justify-center rounded-full ${colorClassName} px-4 text-center font-display text-base text-ink sm:px-6 sm:text-lg`}
+      className={`flex h-full w-full items-center justify-center overflow-hidden rounded-full ${colorClassName} px-4 text-center font-display text-base text-ink truncate sm:px-6 sm:text-lg`}
     >
       {word}
     </div>
