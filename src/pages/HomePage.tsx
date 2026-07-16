@@ -20,11 +20,11 @@ export function HomePage() {
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col justify-center gap-3 sm:gap-4">
-      <div className="mb-2 flex flex-col items-center gap-1 text-center sm:mb-3">
-        <img src={huella} alt="" className="h-12 w-auto opacity-70" />
-        <h2 className="font-display text-3xl text-ink">¡Comencemos a jugar!</h2>
-        <p className="text-m text-ink/70">Ingresá tu nombre para empezar</p>
+    <div className="flex min-h-0 flex-1 flex-col justify-center gap-3 sm:gap-4 [@media(max-height:500px)]:gap-2">
+      <div className="mb-2 flex flex-col items-center gap-1 text-center sm:mb-3 [@media(max-height:500px)]:mb-1">
+        <img src={huella} alt="" className="h-12 w-auto opacity-70 [@media(max-height:500px)]:hidden" />
+        <h2 className="font-display text-3xl text-ink [@media(max-height:500px)]:text-xl">¡Comencemos a jugar!</h2>
+        <p className="text-m text-ink/70 [@media(max-height:500px)]:hidden">Ingresá tu nombre para empezar</p>
       </div>
 
       <form className="contents" onSubmit={handleStart}>
@@ -46,20 +46,20 @@ export function HomePage() {
           <FiEdit2 className="shrink-0 text-brand-pink" aria-hidden="true" />
         </label>
 
-        <div className="mb-2 self-center sm:mb-3">
+        <div className="mb-2 self-center sm:mb-3 [@media(max-height:500px)]:mb-1">
           <PrimaryButton type="submit" icon={<TiHeartFullOutline aria-hidden="true" />}>
             Comenzar
           </PrimaryButton>
         </div>
       </form>
 
-      <div className="mb-2 flex items-center gap-3 sm:mb-3" aria-hidden="true">
+      <div className="mb-2 flex items-center gap-3 sm:mb-3 [@media(max-height:500px)]:hidden" aria-hidden="true">
         <div className="h-px flex-1 bg-ink/10" />
         <FaHeart className="text-brand-pink/50" />
         <div className="h-px flex-1 bg-ink/10" />
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 [@media(max-height:500px)]:grid-cols-2">
         <button
           type="button"
           onClick={() => navigate('/instrucciones')}
