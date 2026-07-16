@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { FiBookOpen, FiCheckCircle, FiClock, FiLink, FiX, FiPlay} from 'react-icons/fi'
+import { FiBookOpen, FiCheckCircle, FiClock, FiLink, FiPlay, FiX } from 'react-icons/fi'
 import { TiHeartFullOutline } from 'react-icons/ti'
 import { useNavigate } from 'react-router'
 import huella from '../assets/huella.png'
@@ -42,10 +42,10 @@ const INSTRUCTIONS: Instruction[] = [
     text: 'Todas las palabras deben existir en el diccionario.',
   },
   {
-  icon: <FiPlay aria-hidden="true" />,
-  title: 'Arranque:',
-  text: 'El reloj empieza a correr con tu primera palabra, sea válida o no.',
-},
+    icon: <FiPlay aria-hidden="true" />,
+    title: 'Arranque:',
+    text: 'El reloj empieza a correr con tu primera palabra, sea válida o no.',
+  },
 ]
 
 export function InstructionsPage() {
